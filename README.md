@@ -16,10 +16,10 @@ Ensure that you have both installed before continue.
 
 # How to use it
 
-To start all the containers execute `./start.sh`
-To stop all the containers execute `./stop.sh`
-To restart all the containers execute (yes, you get it...)
-If for any reason you need to clean all the containers, type `./clean-containers.sh`
+- To start all the containers execute `./start.sh`
+- To stop all the containers execute `./stop.sh`
+- To restart all the containers execute (yes, you get it...)
+- If for any reason you need to clean all the containers, type `./clean-containers.sh`
 
 # Notes
 
