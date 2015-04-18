@@ -1,0 +1,95 @@
+db:
+  image: "tutum/mysql:5.5"
+  ports:
+    - "127.0.0.1:3306:3306"
+  environment:
+    MYSQL_USER: "tariff"
+    MYSQL_PASS: "tariff"
+redis:
+  image: "dockerfile/redis"
+  ports:
+    - "6379:6379"
+elasticsearch:
+  image: "dockerfile/elasticsearch"
+  ports:
+    - "9200:9200"
+backend:
+  build: "./trade-tariff-backend"
+  command: "/sbin/my_init -- ./startup.sh"
+  volumes:
+    - "./trade-tariff-backend:/trade-tariff-backend"
+  ports:
+    - "3018:3018"
+  links:
+    - "db"
+    - "redis"
+    - "elasticsearch"
+    - "signonotron2"
+  hostname: "tariff-api.tariff.dev.bitzesty.com"
+  environment:
+    RAILS_ENV: "development"
+    PLEK_SERVICE_SIGNON_URI: "http://signon.tariff.dev.bitzesty.com:3016"
+
+admindb:
+  image: "tutum/mysql:5.5"
+  ports:
+    - "3306"
+  environment:
+    MYSQL_USER: "tariff_admin"
+    MYSQL_PASS: "tariff_admin"
+admin:
+  build: "./trade-tariff-admin"
+  command: "/sbin/my_init -- ./startup.sh"
+  volumes:
+    - "./trade-tariff-admin:/trade-tariff-admin"
+  ports:
+    - "3046:3046"
+  links:
+    - "admindb"
+    - "backend"
+    - "signonotron2"
+  hostname: "tariff-admin.tariff.dev.bitzesty.com"
+  environment:
+    RAILS_ENV: "development"
+    TARIFF_API_HOST: "http://tariff-api.tariff.dev.bitzesty.com:3018"
+    PLEK_SERVICE_TARIFF_API_URI: "http://tariff-api.tariff.dev.bitzesty.com:3018"
+    PLEK_SERVICE_SIGNON_URI: "http://signon.tariff.dev.bitzesty.com:3016"
+
+frontend:
+  build: "./trade-tariff-frontend"
+  command: "/sbin/my_init -- ./startup.sh"
+  volumes:
+    - "./trade-tariff-frontend:/trade-tariff-frontend"
+  ports:
+    - "3017:3017"
+  links:
+    - "backend"
+  hostname: "tariff.tariff.dev.bitzesty.com"
+  environment:
+    RAILS_ENV: "development"
+    TARIFF_API_HOST: "http://tariff-api.tariff.dev.bitzesty.com:3018"
+    PLEK_SERVICE_TARIFF_API_URI: "http://tariff-api.tariff.dev.bitzesty.com:3018"
+
+signondb:
+  image: "tutum/mysql:5.5"
+  ports:
+    - "3306"
+  environment:
+    MYSQL_USER: "signonotron2"
+    MYSQL_PASS: "signonotron2"
+signonotron2:
+  build: "./signonotron2"
+  command: "/sbin/my_init -- ./startup.sh"
+  volumes:
+    - "./signonotron2:/signonotron2"
+    - "./trade-tariff-admin:/trade-tariff-admin"
+    - "./trade-tariff-backend:/trade-tariff-backend"
+  ports:
+    - "3016:3016"
+  links:
+    - "signondb"
+    - "redis"
+  hostname: "signon.tariff.dev.bitzesty.com"
+  environment:
+    RAILS_ENV: "development"
+    PLEK_SERVICE_SIGNON_URI: "http://signon.tariff.dev.bitzesty.com:3016"
