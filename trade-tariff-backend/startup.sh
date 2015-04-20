@@ -6,5 +6,4 @@ export GDS_SSO_STRATEGY=real
 
 bundle install
 bundle exec whenever --update-crontab
-bundle exec foreman start
-exit 0
+bundle exec unicorn -p 3018
