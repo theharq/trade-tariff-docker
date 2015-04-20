@@ -29,5 +29,6 @@ git fetch
 git checkout ruby-22-update #remove it when alphagov merges this branch
 cd ../..
 
-
-
+fig run signonotron2 /bin/bash install.sh
+fig run backend /bin/bash install.sh
+fig run admin /bin/bash install.sh

@@ -18,7 +18,7 @@ Ensure that you have both installed before continue.
 
 - To start all the containers execute `./start.sh`
 - To stop all the containers execute `./stop.sh`
-- To restart all the containers execute (yes, you get it...)
+- To restart all the containers execute `./restart.sh`
 - If for any reason you need to clean all the containers, type `./clean-containers.sh`
 
 # Notes
@@ -29,28 +29,3 @@ It will automatically add two remotes for each repository:
 - alphagov: alphagov, the client, be careful!
 
 **Note:** It's important you start all containers together because they need to share environment variables at startup. Without them, you'll start to see `No route to host tariff-api.dev.gov.uk`
-
-
-
-Sorry for the long post here's a potato:
-```
-░░░░░░░░░░░░░░░░▄▀▀▀▀▀▀▀▀░▄▄░░░░░░░░░░░
-░░░░░░░░░░░▄▀██▀░░░░░░░░░░░▀▀▄░░░░░░░░░
-░░░░░░░░░░▀▄░░▀▀▄▄░░░░░░░░░░░█▄▄░░░░░░░
-░░░░░░░░░░░░█▄▄░░░▀▀▀▄▄▄▄▄▄▄▄▀▀░█░░░░░░
-░░░░░░░▄▀▀▀▄█▄░▀▀▀▄▄▄▄░░░░░░░░▄▄▀░░░░░░
-░░░░░▄▀░░▄█▀████▄▄░▄██████▀▀▀▀█░▄░░░░░░
-░░░░░▀░▄▀█░░░████▀░▀▀▀▀▀▀▀░░░░█░░▀▀▄░░░
-░░░░█░░▀▄▀░▄▀░░▀▄░░▄▄▄▄░░░░░░░█░▀░░▀▄░░
-░░░░▀▄░▄▀░█▀░▄▄░█░█░░░░█░░░░░░█░░█░░█░░
-░░░░░▀█▀░░█░░▀▀░██▀░██░█░░░░░░░▄░█░░▀░░
-░░▄▄▄▄█░░░▀▄░░▄█▄█░░░░░█░░░░░░░█▀░░█░░░
-▄▀▄▄▄▄▀░░░░░▀█▀░░▀█▄▄▄▀░░░░░░░░█▄▀▀░░░░
-▀░░▀▄█░░░░░▄▄▀░░░░█░░░░░░░░░░░▄▀▀▄░░░░░
-░▀▄░▀█░▄▄░▄▀░░░░░░░▀░░░░░░░░░░█░░░▀▄░░░
-░░░█░██▀▀▀██░░░░░░░▄▀░░░░░░░░░▀▄▄▄░░▀▄░
-░▄█░▄█▀█▀▀░▄▀█▄▄▀█▀█▀▄░░░░░░░░▄▀▀▀▀▀░░█
-█▄▄▀███▄▀▄█░░█░░█░█░▀▄█░░░░░░░█░▄██▀▀▀▀
-░░▀████▀▄░▀▀▀█▄▄█▄▄█▄▀░░░░░░░▄▀█████░░░
-▄█▀▀░▄░▀▄▀█▄░████████░░░░░░░▄▀██▄█▄▀░░░
-```
