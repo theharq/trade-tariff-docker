@@ -1,8 +1,6 @@
 Trade Tariff Docker
 ===================
 
-This is an internal project we use to speed up all the things http://memegenerator.net/instance/61385457
-
 # Prerequisites
 
 We use [docker](https://www.docker.com/) and [fig](http://www.fig.sh/) to build and link docker containers.
