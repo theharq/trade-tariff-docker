@@ -6,6 +6,7 @@ if [ ! -d "trade-tariff-backend/src/.git" ]; then
   cd trade-tariff-backend/src
   git remote add alphagov https://github.com/alphagov/trade-tariff-backend
   git fetch
+  git checkout new-docker # remove it after merge
   cd ../..
 fi
 
@@ -15,6 +16,7 @@ if [ ! -d "trade-tariff-frontend/src/.git" ]; then
   cd trade-tariff-frontend/src
   git remote add alphagov https://github.com/alphagov/trade-tariff-frontend
   git fetch
+  git checkout new-docker # remove it after merge
   cd ../..
 fi
 
@@ -24,6 +26,7 @@ if [ ! -d "trade-tariff-admin/src/.git" ]; then
   cd trade-tariff-admin/src
   git remote add alphagov https://github.com/alphagov/trade-tariff-admin
   git fetch
+  git checkout new-docker # remove it after merge
   cd ../..
 fi
 
@@ -34,6 +37,7 @@ if [ ! -d "signonotron2/src/.git" ]; then
   git remote add alphagov https://github.com/alphagov/signonotron2
   git fetch
   git checkout ruby-22-update #remove it when alphagov merges this branch
+  git checkout new-docker # remove it after merge
   cd ../..
 fi
 
