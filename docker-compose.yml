@@ -24,12 +24,25 @@ admin:
   links:
    - admindb
    - api
+   - signonotron2
   ports:
    - "3046:3046"
   environment:
    - DATABASE_URL=mysql2://tariff_admin:tariff_admin@admindb:3306
    - GDS_SSO_STRATEGY=real
    - BACKEND_HOST=http://api:3018
+   - PLEK_SERVICE_TARIFF_API_URI=http://api:3018
+   - PLEK_SERVICE_SIGNON_URI=http://signonotron2:3016
+signonotron2:
+  build: ./signonotron2
+  command: bundle exec rails s -p 3016
+  links:
+   - signondb
+   - redis
+  ports:
+   - "3016:3016"
+  environment:
+   - DATABASE_URL=mysql2://signonotron2:signonotron2@signondb:3306
 mysql:
   image: tutum/mysql:5.5
   ports:
@@ -44,6 +57,13 @@ admindb:
   environment:
    - MYSQL_USER=tariff_admin
    - MYSQL_PASS=tariff_admin
+signondb:
+  image: tutum/mysql:5.5
+  ports:
+    - 3306
+  environment:
+   - MYSQL_USER=signonotron2
+   - MYSQL_PASS=signonotron2
 redis:
   image: convox/redis
   ports:
