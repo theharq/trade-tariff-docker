@@ -30,7 +30,6 @@ admin:
   environment:
    - DATABASE_URL=mysql2://tariff_admin:tariff_admin@admindb:3306
    - GDS_SSO_STRATEGY=real
-   - BACKEND_HOST=http://api:3018
    - PLEK_SERVICE_TARIFF_API_URI=http://api:3018
    - PLEK_SERVICE_SIGNON_URI=http://dockerhost:3016
 signonotron2:
