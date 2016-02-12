@@ -1,15 +1,16 @@
-FROM eritiro/baseimage-rbenv-docker:latest
+FROM ruby:2.2.2
 
-# set $HOME
-RUN echo "/root" > /etc/container_environment/HOME
+RUN apt-get update -qq && \
+  apt-get install -y --no-install-recommends \
+  libcurl4-openssl-dev \
+  libmysqlclient-dev \
+  mysql-client \
+  nodejs
 
-# let's copy and bundle frontend
-ADD . /trade-tariff-frontend
-# and workdir
-WORKDIR /trade-tariff-frontend
-RUN cd src && bundle install
+RUN mkdir /app
+WORKDIR /app
+COPY src/Gemfile /app/
+COPY src/Gemfile.lock /app/
+RUN bundle install
 
-# script that will update backend's IP
-RUN mkdir -p /etc/my_init.d
-ADD backend_ip.sh /etc/my_init.d/backend_ip.sh
-RUN chmod +x /etc/my_init.d/backend_ip.sh
+COPY src/ /app/
