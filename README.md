@@ -3,14 +3,28 @@ Trade Tariff Docker
 
 # Prerequisites
 
-We use [docker](https://www.docker.com/) and [fig](http://www.fig.sh/) to build and link docker containers.
+We use [Docker](https://www.docker.com/) and [Docker Compoese](https://docs.docker.com/compose/) to build and link docker containers.
 Ensure that you have both installed before continue.
+
+If you are using Docker Machine please add the host to the `/etc/hosts file`
+
+`vim /etc/hosts`
+
+    ##
+    # Host Database
+    #
+    # localhost is used to configure the loopback interface
+    # when the system is booting.  Do not change this entry.
+    ##
+    127.0.0.1       localhost
+    192.168.XX.XX   dockerhost
 
 # Installation
 
 1. Clone this repo
-2. Execute `./install.sh`
-3. Profit!
+2. Execute `./install.sh` to donwload the repositories
+3. Execute `docker-compose up` to create the docker containers
+4. Profit!
 
 # How to use it
 

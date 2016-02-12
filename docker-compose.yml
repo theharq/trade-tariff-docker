@@ -32,10 +32,10 @@ admin:
    - GDS_SSO_STRATEGY=real
    - BACKEND_HOST=http://api:3018
    - PLEK_SERVICE_TARIFF_API_URI=http://api:3018
-   - PLEK_SERVICE_SIGNON_URI=http://signonotron2:3016
+   - PLEK_SERVICE_SIGNON_URI=http://dockerhost:3016
 signonotron2:
   build: ./signonotron2
-  command: bundle exec rails s -p 3016
+  command: bundle exec unicorn -p 3016
   links:
    - signondb
    - redis
