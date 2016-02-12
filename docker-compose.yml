@@ -1,0 +1,35 @@
+frontend:
+  build: ./trade-tariff-frontend
+  command: bundle exec unicorn -p 3017
+  links:
+   - api
+  ports:
+   - "3017:3017"
+  environment:
+   - TARIFF_API_HOST=http://api:3018
+api:
+  build: ./trade-tariff-backend
+  command: bundle exec unicorn -p 3018
+  links:
+   - mysql
+   - redis
+   - elasticsearch
+  ports:
+   - "3018:3018"
+  environment:
+   - DATABASE_URL=mysql2://tariff:tariff@mysql:3306
+mysql:
+  image: tutum/mysql:5.5
+  ports:
+    - 3306
+  environment:
+   - MYSQL_USER=tariff
+   - MYSQL_PASS=tariff
+redis:
+  image: convox/redis
+  ports:
+    - 6379
+elasticsearch:
+  image: elasticsearch
+  ports:
+    - 9200
