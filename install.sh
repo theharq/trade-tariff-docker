@@ -33,10 +33,5 @@ if [ ! -d "signonotron2/src/.git" ]; then
   cd signonotron2/src
   git remote add alphagov https://github.com/alphagov/signonotron2
   git fetch
-  git checkout ruby-22-update #remove it when alphagov merges this branch
   cd ../..
 fi
-
-fig run signonotron2 /bin/bash install.sh
-fig run backend /bin/bash install.sh
-fig run admin /bin/bash install.sh
