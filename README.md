@@ -23,15 +23,12 @@ If you are using Docker Machine please add the host to the `/etc/hosts file`
 
 1. Clone this repo
 2. Execute `./install.sh` to donwload the repositories
-3. Execute `docker-compose up` to create the docker containers
+3. Execute `docker-compose build` to create the docker containers
 4. Profit!
 
 # How to use it
 
-- To start all the containers execute `./start.sh`
-- To stop all the containers execute `./stop.sh`
-- To restart all the containers execute `./restart.sh`
-- If for any reason you need to clean all the containers, type `./clean-containers.sh`
+- To start all the containers execute `docker-compose up`
 
 # Notes
 
