@@ -18,6 +18,18 @@ api:
    - "3018:3018"
   environment:
    - DATABASE_URL=mysql2://tariff:tariff@mysql:3306
+admin:
+  build: ./trade-tariff-admin
+  command: bundle exec unicorn -p 3046
+  links:
+   - admindb
+   - api
+  ports:
+   - "3046:3046"
+  environment:
+   - DATABASE_URL=mysql2://tariff_admin:tariff_admin@admindb:3306
+   - GDS_SSO_STRATEGY=real
+   - BACKEND_HOST=http://api:3018
 mysql:
   image: tutum/mysql:5.5
   ports:
@@ -25,6 +37,13 @@ mysql:
   environment:
    - MYSQL_USER=tariff
    - MYSQL_PASS=tariff
+admindb:
+  image: tutum/mysql:5.5
+  ports:
+    - 3306
+  environment:
+   - MYSQL_USER=tariff_admin
+   - MYSQL_PASS=tariff_admin
 redis:
   image: convox/redis
   ports:
