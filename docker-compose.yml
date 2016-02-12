@@ -5,6 +5,8 @@ frontend:
    - api
   ports:
    - "3017:3017"
+  volumes:
+    - ./trade-tariff-frontend/src:/app
   environment:
    - TARIFF_API_HOST=http://api:3018
 api:
@@ -16,6 +18,8 @@ api:
    - elasticsearch
   ports:
    - "3018:3018"
+  volumes:
+    - ./trade-tariff-backend/src:/app
   environment:
    - DATABASE_URL=mysql2://tariff:tariff@mysql:3306
 admin:
@@ -27,6 +31,8 @@ admin:
    - signonotron2
   ports:
    - "3046:3046"
+  volumes:
+    - ./trade-tariff-admin/src:/app
   environment:
    - DATABASE_URL=mysql2://tariff_admin:tariff_admin@admindb:3306
    - GDS_SSO_STRATEGY=real
@@ -40,6 +46,8 @@ signonotron2:
    - redis
   ports:
    - "3016:3016"
+  volumes:
+    - ./signonotron2/src:/app
   environment:
    - DATABASE_URL=mysql2://signonotron2:signonotron2@signondb:3306
 mysql:
