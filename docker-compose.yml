@@ -22,6 +22,7 @@ api:
     - ./trade-tariff-backend/src:/app
   environment:
    - DATABASE_URL=mysql2://tariff:tariff@mysql:3306
+   - GDS_SSO_STRATEGY=real
 admin:
   build: ./trade-tariff-admin
   command: bundle exec unicorn -p 3046
@@ -57,6 +58,7 @@ mysql:
   environment:
    - MYSQL_USER=tariff
    - MYSQL_PASS=tariff
+   - ON_CREATE_DB=tariff_development
 admindb:
   image: tutum/mysql:5.5
   ports:
@@ -64,6 +66,7 @@ admindb:
   environment:
    - MYSQL_USER=tariff_admin
    - MYSQL_PASS=tariff_admin
+   - ON_CREATE_DB=tariff_admin_development
 signondb:
   image: tutum/mysql:5.5
   ports:
@@ -71,6 +74,7 @@ signondb:
   environment:
    - MYSQL_USER=signonotron2
    - MYSQL_PASS=signonotron2
+   - ON_CREATE_DB=signonotron2_development
 redis:
   image: convox/redis
   ports:
